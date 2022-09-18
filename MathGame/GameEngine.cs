@@ -10,6 +10,7 @@ namespace MathGame
             Random random = new Random();
             int[] numbers = new int[2];
             string result = "";
+            int answer = 0;
             int score = 0;
             char[] operators = { '+', '-', '*', '/' };
 
@@ -22,14 +23,54 @@ namespace MathGame
                 {
                     numbers[0] = random.Next(1, 9);
                     numbers[1] = random.Next(1, 9);
-
-                    Console.WriteLine($"{numbers[0]} {operators[(int)type]} {numbers[1]} = ?");
-                    result = Console.ReadLine();
-                    result = Helpers.ValidateResults(result);
                 }
-                
-            }            
-        }
+                else
+                {
+                    numbers = Helpers.GetDivisionNumbers();
+                }
+
+                switch ((int)type)
+                {
+                    case 0:
+                        answer = numbers[0] + numbers[1];
+                        break;
+                    case 1:
+                        answer = numbers[0] - numbers[1];
+                        break;
+                    case 2:
+                        answer = numbers[0] * numbers[1];
+                        break;
+                    case 3:
+                        answer = numbers[0] / numbers[1];
+                        break;
+                    default:
+                        answer = -1;
+                        break;
+                }
+
+                Console.WriteLine($"{numbers[0]} {operators[(int)type]} {numbers[1]} = ?");
+                result = Console.ReadLine();
+                result = Helpers.ValidateResults(result);
+
+                if (int.Parse(result) == answer)
+                {
+                    Console.WriteLine("Your answer was correct! Type any key for the next question.");
+                    Console.ReadLine();
+                    score++;
+                }
+                else
+                {
+                    Console.WriteLine("That is incorrect. Type any key for the next question.");
+                    Console.ReadLine();
+                }
+            }
+
+            Helpers.AddToHistory(score, type);
+            Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the main menu.");
+            Console.ReadLine();
+            Console.Clear();
+
+        }            
 
         internal void AdditionGame()
         {

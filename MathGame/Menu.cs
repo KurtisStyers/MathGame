@@ -5,6 +5,7 @@
         GameEngine gameEngine = new GameEngine();
         internal void ShowMenu(string name, DateTime date)
         {
+            Console.Clear();
             Console.WriteLine("--------------------------------------");
             Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}.");
 
@@ -30,23 +31,20 @@
                         Helpers.PrintGames();
                         break;
                     case "a":
-                        gameEngine.AdditionGame();
+                        gameEngine.runGame(Models.GameType.Addition);
                         break;
                     case "s":
-                        gameEngine.SubtractionGame();
+                        gameEngine.runGame(Models.GameType.Subtraction);
                         break;
                     case "m":
-                        gameEngine.MultiplicationGame();
+                        gameEngine.runGame(Models.GameType.Multiplication);
                         break;
                     case "d":
-                        gameEngine.DivisionGame();
+                        gameEngine.runGame(Models.GameType.Division);
                         break;
                     case "q":
                         Console.WriteLine("Goodbye.");
                         isGameOn = false;
-                        break;
-                    case "x":
-                        gameEngine.runGame(Models.GameType.Addition);
                         break;
                     default:
                         Console.WriteLine("Invalid input.");

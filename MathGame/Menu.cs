@@ -45,6 +45,9 @@
                         Console.WriteLine("Goodbye.");
                         isGameOn = false;
                         break;
+                    case "x":
+                        gameEngine.runGame(Models.GameType.Addition);
+                        break;
                     default:
                         Console.WriteLine("Invalid input.");
                         break;

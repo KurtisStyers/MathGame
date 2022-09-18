@@ -1,9 +1,36 @@
 ﻿using MathGame.Models;
+using System;
 
 namespace MathGame
 {
     internal class GameEngine
     {
+        internal void runGame(GameType type)
+        {
+            Random random = new Random();
+            int[] numbers = new int[2];
+            string result = "";
+            int score = 0;
+            char[] operators = { '+', '-', '*', '/' };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Clear();
+                Console.WriteLine($"{type} game\n");
+
+                if ((int)(type) < 3)
+                {
+                    numbers[0] = random.Next(1, 9);
+                    numbers[1] = random.Next(1, 9);
+
+                    Console.WriteLine($"{numbers[0]} {operators[(int)type]} {numbers[1]} = ?");
+                    result = Console.ReadLine();
+                    result = Helpers.ValidateResults(result);
+                }
+                
+            }            
+        }
+
         internal void AdditionGame()
         {
             Random random = new Random();
@@ -19,7 +46,7 @@ namespace MathGame
                 firstNum = random.Next(1, 9);
                 secondNum = random.Next(1, 9);
 
-                Console.WriteLine($"{firstNum} + {secondNum}");
+                Console.WriteLine($"{firstNum} + {secondNum} = ?");
                 result = Console.ReadLine();
                 result = Helpers.ValidateResults(result);
 
